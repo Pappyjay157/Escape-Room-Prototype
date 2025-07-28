@@ -93,8 +93,8 @@ const EscapeRoom: React.FC = () => {
     if (allPuzzlesSolved && gameState.gamePhase === 'playing') {
       setGameState(prev => ({ ...prev, gamePhase: 'success' }));
       toast({
-        title: "¡Atraco Exitoso!",
-        description: "Has escapado del banco con el botín. ¡La Resistencia está orgullosa!",
+        title: "Heist Success!",
+        description: "You have escaped the bank with the loot. The Resistance is proud!",
       });
     }
   }, [gameState.puzzlesSolved, gameState.gamePhase, toast]);
@@ -108,7 +108,7 @@ const EscapeRoom: React.FC = () => {
   const interactiveObjects: InteractiveObject[] = [
     {
       id: 'bookshelf',
-      name: 'Estantería',
+      name: 'Bookshelf',
       icon: <BookOpen className="w-6 h-6" />,
       position: { x: 15, y: 35 },
       isAvailable: true,
@@ -116,7 +116,7 @@ const EscapeRoom: React.FC = () => {
     },
     {
       id: 'couch',
-      name: 'Sofá',
+      name: 'Couch',
       icon: <Sofa className="w-6 h-6" />,
       position: { x: 45, y: 65 },
       isAvailable: true,
@@ -124,7 +124,7 @@ const EscapeRoom: React.FC = () => {
     },
     {
       id: 'safe',
-      name: 'Caja Fuerte',
+      name: 'Safe',
       icon: <Lock className="w-6 h-6" />,
       position: { x: 75, y: 40 },
       isAvailable: gameState.inventory.magnifyingGlass,
@@ -132,7 +132,7 @@ const EscapeRoom: React.FC = () => {
     },
     {
       id: 'window',
-      name: 'Ventana',
+      name: 'Window',
       icon: <Eye className="w-6 h-6" />,
       position: { x: 25, y: 20 },
       isAvailable: true,
@@ -140,7 +140,7 @@ const EscapeRoom: React.FC = () => {
     },
     {
       id: 'helix',
-      name: 'Terminal Helix',
+      name: 'Helix Terminal',
       icon: <Shield className="w-6 h-6" />,
       position: { x: 60, y: 25 },
       isAvailable: gameState.puzzlesSolved.safe,
@@ -148,7 +148,7 @@ const EscapeRoom: React.FC = () => {
     },
     {
       id: 'vault',
-      name: 'Bóveda Principal',
+      name: 'Main Vault',
       icon: <DoorOpen className="w-6 h-6" />,
       position: { x: 85, y: 50 },
       isAvailable: gameState.puzzlesSolved.helix,
@@ -186,25 +186,25 @@ const EscapeRoom: React.FC = () => {
       case 'bookshelf':
         return (
           <PuzzleModal
-            title="Estantería Misteriosa"
+            title="Mysterious Bookshelf"
             onClose={() => setShowModal(false)}
           >
             <div className="space-y-4">
-              <p className="text-foreground">Encuentras varios libros antiguos. Uno parece diferente...</p>
+              <p className="text-foreground">You find several old books. One seems different...</p>
               <div className="grid grid-cols-3 gap-2">
-                {['Historia', 'Arte', 'CÓDIGO', 'Filosofía', 'Ciencia', 'Literatura'].map((book, idx) => (
+                {['History', 'Art', 'CODE', 'Philosophy', 'Science', 'Literature'].map((book, idx) => (
                   <Button
                     key={book}
-                    variant={book === 'CÓDIGO' ? 'default' : 'outline'}
+                    variant={book === 'CODE' ? 'default' : 'outline'}
                     className="h-20 text-xs"
-                    onClick={() => book === 'CÓDIGO' && solvePuzzle('bookshelf', { safeCode: '1985' })}
+                    onClick={() => book === 'CODE' && solvePuzzle('bookshelf', { safeCode: '1985' })}
                   >
                     {book}
                   </Button>
                 ))}
               </div>
               {gameState.inventory.safeCode && (
-                <p className="text-heist-gold text-sm">¡Encontraste el código: 1985!</p>
+                <p className="text-heist-gold text-sm">You found the code: 1985!</p>
               )}
             </div>
           </PuzzleModal>
@@ -213,11 +213,11 @@ const EscapeRoom: React.FC = () => {
       case 'couch':
         return (
           <PuzzleModal
-            title="Sofá Elegante"
+            title="Elegant Couch"
             onClose={() => setShowModal(false)}
           >
             <div className="space-y-4">
-              <p className="text-foreground">Revisas los cojines del sofá...</p>
+              <p className="text-foreground">You check the couch cushions...</p>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -228,10 +228,10 @@ const EscapeRoom: React.FC = () => {
                   onClick={() => solvePuzzle('couch', { magnifyingGlass: true })}
                 >
                   <Search className="w-8 h-8 mr-2" />
-                  Levantar Cojín
+                  Lift Cushion
                 </Button>
               </motion.div>
-              <p className="text-heist-gold text-sm">¡Lupa encontrada! Ahora puedes examinar la caja fuerte.</p>
+              <p className="text-heist-gold text-sm">Magnifying glass found! Now you can examine the safe.</p>
             </div>
           </PuzzleModal>
         );
@@ -248,19 +248,19 @@ const EscapeRoom: React.FC = () => {
       case 'window':
         return (
           <PuzzleModal
-            title="Ventana de Seguridad"
+            title="Security Window"
             onClose={() => setShowModal(false)}
           >
             <div className="space-y-4">
-              <p className="text-foreground">Miras hacia afuera. Hay policías patrullando...</p>
+              <p className="text-foreground">You look outside. There are police patrolling...</p>
               <Button
                 variant="destructive"
                 onClick={() => {
                   setAlarmTriggered(true);
                   solvePuzzle('window');
                   toast({
-                    title: "¡Alarma Activada!",
-                    description: "Los policías han visto movimiento. ¡Apúrate!",
+                    title: "Alarm Activated!",
+                    description: "The police have seen movement. Hurry up!",
                     variant: "destructive",
                   });
                   // Reduce time
@@ -269,7 +269,7 @@ const EscapeRoom: React.FC = () => {
                 className="w-full"
               >
                 <AlertTriangle className="w-4 h-4 mr-2" />
-                Observar Policías
+                Watch Police
               </Button>
             </div>
           </PuzzleModal>
@@ -286,7 +286,7 @@ const EscapeRoom: React.FC = () => {
       case 'vault':
         return (
           <PuzzleModal
-            title="Bóveda Principal"
+            title="Main Vault"
             onClose={() => setShowModal(false)}
           >
             <div className="space-y-4 text-center">
@@ -296,15 +296,15 @@ const EscapeRoom: React.FC = () => {
                 transition={{ duration: 0.5 }}
               >
                 <CheckCircle2 className="w-16 h-16 text-heist-gold mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-heist-gold">¡Bóveda Abierta!</h3>
-                <p className="text-foreground">Has accedido al tesoro del banco.</p>
+                <h3 className="text-2xl font-bold text-heist-gold">Vault Opened!</h3>
+                <p className="text-foreground">You have accessed the bank's treasure.</p>
               </motion.div>
               <Button
                 variant="gold"
                 onClick={() => solvePuzzle('vault')}
                 className="w-full"
               >
-                Tomar el Botín
+                Take the Loot
               </Button>
             </div>
           </PuzzleModal>
@@ -355,7 +355,7 @@ const EscapeRoom: React.FC = () => {
             {alarmTriggered && (
               <Badge variant="destructive" className="animate-heist-pulse">
                 <AlertTriangle className="w-4 h-4 mr-1" />
-                ALARMA
+                ALARM
               </Badge>
             )}
           </div>
@@ -403,13 +403,13 @@ const EscapeRoom: React.FC = () => {
           {gameState.inventory.magnifyingGlass && (
             <Badge variant="outline" className="bg-card/80">
               <Search className="w-4 h-4 mr-1" />
-              Lupa
+              Magnifying Glass
             </Badge>
           )}
           {gameState.inventory.safeCode && (
             <Badge variant="outline" className="bg-card/80">
               <Lock className="w-4 h-4 mr-1" />
-              Código: {gameState.inventory.safeCode}
+              Code: {gameState.inventory.safeCode}
             </Badge>
           )}
         </div>
@@ -474,9 +474,9 @@ const SafePuzzle: React.FC<{
   };
 
   return (
-    <PuzzleModal title="Caja Fuerte" onClose={onClose}>
+    <PuzzleModal title="Safe" onClose={onClose}>
       <div className="space-y-4">
-        <p className="text-foreground">Usa la lupa para revelar el código oculto...</p>
+        <p className="text-foreground">Use the magnifying glass to reveal the hidden code...</p>
         <div className="flex justify-center space-x-2">
           {code.map((digit, index) => (
             <input
@@ -491,7 +491,7 @@ const SafePuzzle: React.FC<{
         </div>
         {expectedCode && (
           <p className="text-xs text-muted-foreground text-center">
-            Pista: El año de una película famosa sobre el futuro
+            Hint: The year of a famous movie about the future
           </p>
         )}
       </div>
@@ -507,23 +507,23 @@ const HelixPuzzle: React.FC<{
   
   const questions = [
     {
-      question: "¿Cuál es el protocolo para una situación de emergencia?",
+      question: "What is the protocol for an emergency situation?",
       options: [
-        "Activar alarma inmediatamente",
-        "Seguir protocolo de evacuación estándar",
-        "Liberar gases somníferos",
-        "Ignorar y continuar operación"
+        "Activate alarm immediately",
+        "Follow standard evacuation protocol",
+        "Release sleeping gases",
+        "Ignore and continue operation"
       ],
-      correct: "Liberar gases somníferos"
+      correct: "Release sleeping gases"
     }
   ];
 
   return (
-    <PuzzleModal title="Terminal Helix AI" onClose={onClose}>
+    <PuzzleModal title="Helix AI Terminal" onClose={onClose}>
       <div className="space-y-4">
         <div className="text-center">
           <Shield className="w-12 h-12 text-heist-vault mx-auto mb-2" />
-          <p className="text-sm text-muted-foreground">Sistema de IA de Seguridad</p>
+          <p className="text-sm text-muted-foreground">Security AI System</p>
         </div>
         
         <div className="space-y-3">
@@ -543,7 +543,7 @@ const HelixPuzzle: React.FC<{
         {selectedAnswer === questions[0].correct && (
           <Button onClick={onSolve} variant="vault" className="w-full">
             <CheckCircle2 className="w-4 h-4 mr-2" />
-            Acceso Concedido
+            Access Granted
           </Button>
         )}
       </div>
@@ -572,20 +572,20 @@ const SuccessScreen: React.FC<{ timeElapsed: number; hintsUsed: number }> = ({
       </motion.div>
       
       <h1 className="text-4xl font-bold text-heist-gold">
-        ¡ATRACO EXITOSO!
+        HEIST SUCCESS!
       </h1>
       
       <p className="text-xl text-foreground">
-        Has completado el atraco perfecto. La Resistencia está orgullosa.
+        You have completed the perfect heist. The Resistance is proud.
       </p>
       
       <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
         <Card className="p-4 text-center">
-          <h3 className="font-bold text-heist-gold">Tiempo</h3>
+          <h3 className="font-bold text-heist-gold">Time</h3>
           <p className="text-2xl">{Math.floor(timeElapsed / 60)}:{(timeElapsed % 60).toString().padStart(2, '0')}</p>
         </Card>
         <Card className="p-4 text-center">
-          <h3 className="font-bold text-heist-gold">Pistas</h3>
+          <h3 className="font-bold text-heist-gold">Hints</h3>
           <p className="text-2xl">{hintsUsed}</p>
         </Card>
       </div>
@@ -595,7 +595,7 @@ const SuccessScreen: React.FC<{ timeElapsed: number; hintsUsed: number }> = ({
         variant="gold"
         className="text-lg px-8 py-3"
       >
-        Nuevo Atraco
+        New Heist
       </Button>
     </motion.div>
   </div>
@@ -612,11 +612,11 @@ const FailureScreen: React.FC = () => (
       <div className="text-6xl mb-4">🚨</div>
       
       <h1 className="text-4xl font-bold text-heist-red">
-        ¡CAPTURADO!
+        CAPTURED!
       </h1>
       
       <p className="text-xl text-foreground">
-        Se acabó el tiempo. La policía te ha encontrado.
+        Time is up. The police have found you.
       </p>
       
       <Button 
@@ -624,7 +624,7 @@ const FailureScreen: React.FC = () => (
         variant="destructive"
         className="text-lg px-8 py-3"
       >
-        Intentar de Nuevo
+        Try Again
       </Button>
     </motion.div>
   </div>
