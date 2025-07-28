@@ -9,15 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-heist transition-heist",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-heist transition-heist",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-card/20 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground transition-heist",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-heist",
+        ghost: "hover:bg-accent hover:text-accent-foreground transition-heist",
+        link: "text-primary underline-offset-4 hover:underline transition-heist",
+        heist: "bg-gradient-alarm text-white hover:scale-105 shadow-heist transition-heist font-bold",
+        vault: "bg-gradient-vault text-white hover:animate-vault-glow shadow-vault transition-heist",
+        gold: "bg-gradient-gold text-heist-shadow hover:scale-105 shadow-dramatic transition-heist font-bold",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -61,7 +61,27 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				heist: {
+					red: 'hsl(var(--heist-red))',
+					gold: 'hsl(var(--heist-gold))',
+					vault: 'hsl(var(--heist-vault))',
+					shadow: 'hsl(var(--heist-shadow))',
+					glow: 'hsl(var(--heist-glow))'
 				}
+			},
+			backgroundImage: {
+				'gradient-vault': 'var(--gradient-vault)',
+				'gradient-alarm': 'var(--gradient-alarm)',
+				'gradient-gold': 'var(--gradient-gold)'
+			},
+			boxShadow: {
+				'heist': 'var(--shadow-heist)',
+				'vault': 'var(--shadow-vault)',
+				'dramatic': 'var(--shadow-dramatic)'
+			},
+			transitionProperty: {
+				'heist': 'var(--transition-heist)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +104,52 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'heist-pulse': {
+					'0%, 100%': {
+						opacity: '1',
+						transform: 'scale(1)'
+					},
+					'50%': {
+						opacity: '0.8',
+						transform: 'scale(1.05)'
+					}
+				},
+				'alarm-flash': {
+					'0%, 100%': {
+						backgroundColor: 'hsl(var(--heist-red))',
+						opacity: '0.8'
+					},
+					'50%': {
+						backgroundColor: 'hsl(var(--heist-gold))',
+						opacity: '1'
+					}
+				},
+				'vault-glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px hsl(var(--heist-glow) / 0.4)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px hsl(var(--heist-glow) / 0.8)'
+					}
+				},
+				'slide-in-right': {
+					'0%': { transform: 'translateX(100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' }
+				},
+				'bounce-subtle': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'heist-pulse': 'heist-pulse 2s ease-in-out infinite',
+				'alarm-flash': 'alarm-flash 1s ease-in-out infinite',
+				'vault-glow': 'vault-glow 3s ease-in-out infinite',
+				'slide-in-right': 'slide-in-right 0.5s ease-out',
+				'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite'
 			}
 		}
 	},

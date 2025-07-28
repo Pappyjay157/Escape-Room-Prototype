@@ -8,35 +8,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Money Heist Color Palette */
+    --background: 15 25% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 15 20% 12%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 15 20% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 85% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 15 25% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 15 15% 20%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 150 80% 40%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 15 15% 25%;
+    --input: 15 15% 25%;
+    --ring: 0 85% 45%;
 
     --radius: 0.5rem;
+
+    /* Heist-specific colors */
+    --heist-red: 0 85% 45%;
+    --heist-gold: 45 100% 50%;
+    --heist-vault: 150 80% 40%;
+    --heist-shadow: 15 25% 8%;
+    --heist-glow: 150 100% 60%;
+
+    /* Gradients */
+    --gradient-vault: linear-gradient(135deg, hsl(var(--heist-vault)), hsl(150 60% 30%));
+    --gradient-alarm: linear-gradient(90deg, hsl(var(--heist-red)), hsl(0 70% 60%));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--heist-gold)), hsl(45 80% 40%));
+
+    /* Shadows */
+    --shadow-heist: 0 10px 30px -10px hsl(var(--heist-red) / 0.3);
+    --shadow-vault: 0 0 40px hsl(var(--heist-glow) / 0.4);
+    --shadow-dramatic: 0 20px 60px -20px hsl(var(--heist-shadow) / 0.8);
+
+    /* Animations */
+    --transition-heist: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --pulse-danger: 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
     --sidebar-background: 0 0% 98%;
 
