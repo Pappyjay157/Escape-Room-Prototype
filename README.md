@@ -57,7 +57,7 @@ A web-based, point-and-click escape room game inspired by the TV series *Money H
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Pappyjay157/Escape-Room-Prototype.git
-   cd money-heist-lockdown-protocol
+   cd Escape-Room-Prototype
    ```
 
 2. **Install Dependencies**:
@@ -76,7 +76,7 @@ Navigate to http://localhost:3000 to view the game.
 ## 📂 Project Structure
 
 ```plaintext
-money-heist-lockdown-protocol/
+Escape-Room-Prototype/
 ├── public/
 │   ├── images/
 │   ├── sounds/
